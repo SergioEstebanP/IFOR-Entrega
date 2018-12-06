@@ -9,8 +9,8 @@ Making a small GUI oriented to a little suite of forensics applications. With th
 1. Objective
 2. Tools used in the project
 2. Program 1
-  1. Files differences.
-  2. Directory differences.
+    1. Files differences.
+    2. Directory differences.
 3. Program 2
 4. Program 3
 
