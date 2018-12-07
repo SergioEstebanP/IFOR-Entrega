@@ -1,3 +1,4 @@
+import eventsHandler.MainHandler;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -68,11 +69,16 @@ public class App extends Application {
         HBox topPane = new HBox(upperMenuBar);
         mainPanel.setTop(topPane);
 
+        VBox scen2Pane = new VBox();
+        Scene scene2 = new Scene(scen2Pane);
+
         GridPane centerPane = new GridPane();
         mainGridConfiguration(centerPane);
         mainPanel.setCenter(centerPane);
         // Create the scene and add all the primary elements
         stageConfiguration(primaryStage, mainPanel);
+
+        p1Dire.setOnAction(e -> primaryStage.setScene(scene2));
     }
 
     private void mainGridConfiguration(GridPane grid) {
