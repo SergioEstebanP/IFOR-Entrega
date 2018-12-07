@@ -1,5 +1,3 @@
-import java.awt.TextArea;
-
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -34,7 +32,7 @@ public class App extends Application {
     // variables needed for the Program 1 the text in the buttons, labels and
     // other elements change depending on the program selected
     private Label file1Lbl = new Label("File 1");
-    private Label file2lbl = new Label("File 2");
+    private Label file2Lbl = new Label("File 2");
 
     private Button file1UploadBtn = new Button("Select File");
     private Button file2UploadBtn = new Button("Select File");
@@ -62,28 +60,46 @@ public class App extends Application {
         // Configuration of the upper toolbar
         upperToolbarConfiguration();
 
+        // Style configuration for the controls
+        styleAndFormatConfiguration();
+
         // Create the different panes to add to the scene 
         BorderPane mainPanel = new BorderPane();
         HBox topPane = new HBox(upperMenuBar);
         mainPanel.setTop(topPane);
 
-        HBox file1Elements = new HBox(file1Lbl, file1Path, file1UploadBtn);
-        HBox file2Elements = new HBox(file2Lbl, file2Path, file2UploadBtn);
-        HBox textElements = new HBox(diferences);
-
-        VBox centerPane = new VBox(file1Elements, file2Elements, textElements);
-
+        GridPane centerPane = new GridPane();
+        mainGridConfiguration(centerPane);
         mainPanel.setCenter(centerPane);
         // Create the scene and add all the primary elements
         stageConfiguration(primaryStage, mainPanel);
     }
 
-    public static void main(String[] args) {
+    private void mainGridConfiguration(GridPane grid) {
+        // setting some style and appereance in the grid
+        grid.setPadding(new Insets(10));
+        grid.setHgap(10);
+        grid.setVgap(10);
+        
+        // adding some buttons
+        grid.add(file1Lbl, 0, 0);
+        grid.add(file1Path, 1, 0);
+        grid.setColumnSpan(file1Path, 4);
+        grid.add(file1UploadBtn, 5, 0);
+        grid.add(file2Lbl, 0, 1);
+        grid.add(file2Path, 1, 1);
+        grid.setColumnSpan(file2Path, 4);
+        grid.add(file2UploadBtn, 5, 1);
+        grid.add(diferences, 0, 3);
+        grid.setColumnSpan(diferences, 7);
+	}
+
+	public static void main(String[] args) {
         launch();
     }
 
     private void stageConfiguration (Stage primaryStage, BorderPane mainPanel) {
-        Scene scene = new Scene(mainPanel, 420, 300);
+        Scene scene = new Scene(mainPanel, 390, 300);
         primaryStage.setScene(scene);
         primaryStage.setTitle("IFOR-ENSICS");
         primaryStage.setResizable(true);
@@ -109,6 +125,10 @@ public class App extends Application {
         program3.getItems().add(p3MagicNumb);
 
         helpMenu.getItems().add(about);
+    }
+
+    private void styleAndFormatConfiguration () {
+        upperMenuBar.setPrefWidth(600);
     }
 
 }
