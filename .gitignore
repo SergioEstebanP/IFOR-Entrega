@@ -1,9 +1,13 @@
+# some hidden files
 .gradle
-/build/
 .settings
-gradle/
 .classpath
 .project
+
+# directories not needed
+/build/
+gradle/
+bin/
 
 
 # Ignore Gradle GUI config
