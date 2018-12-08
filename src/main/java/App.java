@@ -1,10 +1,11 @@
-import eventsHandler.MainHandler;
+import eventshandler.MainHandler;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -30,17 +31,17 @@ public class App extends Application {
 
     private MenuItem about = new MenuItem("Information");
 
+    private Button searchDiferences = new Button("Buscar Diferencias");
+    private FileChooser fileChooser = new FileChooser();
+
     // variables needed for the Program 1 the text in the buttons, labels and
     // other elements change depending on the program selected
     private Label file1Lbl = new Label("File 1");
     private Label file2Lbl = new Label("File 2");
-
     private Button file1UploadBtn = new Button("Select File");
     private Button file2UploadBtn = new Button("Select File");
-
     private TextField file1Path = new TextField("");
     private TextField file2Path = new TextField("");
-
     private TextArea diferences = new TextArea();
 
     // variables needed for the Program 2 part A: copy by creation date 
@@ -69,16 +70,15 @@ public class App extends Application {
         HBox topPane = new HBox(upperMenuBar);
         mainPanel.setTop(topPane);
 
-        VBox scen2Pane = new VBox();
-        Scene scene2 = new Scene(scen2Pane);
-
-        GridPane centerPane = new GridPane();
-        mainGridConfiguration(centerPane);
-        mainPanel.setCenter(centerPane);
+        GridPane centerPane1 = new GridPane();
+        mainGridConfiguration(centerPane1);
+        mainPanel.setCenter(centerPane1);
         // Create the scene and add all the primary elements
         stageConfiguration(primaryStage, mainPanel);
 
-        p1Dire.setOnAction(e -> primaryStage.setScene(scene2));
+        // change the scenes
+        p1Dire.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage));
+        p1File.setOnAction(e -> MainHandler.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage));
     }
 
     private void mainGridConfiguration(GridPane grid) {
@@ -96,6 +96,8 @@ public class App extends Application {
         grid.add(file2Path, 1, 1);
         grid.setColumnSpan(file2Path, 4);
         grid.add(file2UploadBtn, 5, 1);
+        grid.add(searchDiferences, 0, 2);
+        grid.setColumnSpan(searchDiferences, 4);
         grid.add(diferences, 0, 3);
         grid.setColumnSpan(diferences, 7);
 	}
