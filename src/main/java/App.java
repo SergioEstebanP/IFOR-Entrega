@@ -108,6 +108,7 @@ public class App extends Application {
 
         // change the scenes
         p1Dire.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, primaryStage, title));
+        p1Dire.setOnAction(e -> primaryStage.setScene(new Scene(mainPanel)));
         p1File.setOnAction(e -> MainHandler.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage, title));
         p2CreateDate.setOnAction(e -> stageConfiguration(primaryStage, mainPanel2));
         searchDiferences.setOnAction(e -> MainHandler.lookForDiferences(file1Path, file2Path, diferences));

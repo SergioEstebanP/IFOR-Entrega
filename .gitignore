@@ -6,7 +6,6 @@
 
 # directories not needed
 /build/
-gradle/
 bin/
 
 
