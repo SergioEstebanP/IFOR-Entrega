@@ -1,8 +1,5 @@
-import java.awt.TextArea;
-import java.awt.TextField;
-
 import eventshandler.MainHandler;
-import eventshandler.program1handlers.*;
+import eventshandler.Handler1;
 
 import javafx.application.Application;
 import javafx.geometry.HPos;

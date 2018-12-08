@@ -1,7 +1,5 @@
 package eventshandler;
 
-import eventshandler.program1handlers.*;
-
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -58,7 +56,36 @@ public class MainHandler {
         }
     }
 
-    public static void selectDir (TextField dirTxt) {
-        Handler2.selectDir(dirTxt);
+    public static void selectDir (DirectoryChooser dc, Stage stage, TextField dirTxt) {
+        Handler1.selectDirectory(dc, stage, dirTxt);
+    }
+
+    public static void lookForCreation (TextArea output, String fromDate, String toDate, String fromPath) {
+        StringBuffer sb = new StringBuffer();
+
+        try {
+            Process command = Runtime.getRuntime().exec(new String[]{"find", fromPath, " -newerct \"" + fromDate + "\" ", "! ", "-newerct \"" + toDate + "\"" ," -ls"});
+        
+            command.waitFor();
+        
+            BufferedReader reader = new BufferedReader(new InputStreamReader(command.getInputStream()));
+        
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(command.getErrorStream()));
+
+            // read any errors from the attempted command
+            String s;
+            while ((s = stdError.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            String commandOutput = "";			
+            while ((commandOutput = reader.readLine())!= null) {
+                sb.append(commandOutput + "\n");
+            }
+            System.out.println(sb.toString());
+            output.setText(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

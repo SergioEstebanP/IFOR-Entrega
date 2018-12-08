@@ -1,4 +1,4 @@
-package eventshandler.program1handlers;
+package eventshandler;
 
 import javafx.stage.FileChooser;
 import javafx.stage.DirectoryChooser;

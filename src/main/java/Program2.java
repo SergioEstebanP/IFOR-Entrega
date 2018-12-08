@@ -1,7 +1,5 @@
-import java.awt.TextField;
-
 import eventshandler.MainHandler;
-import eventshandler.program1handlers.*;
+import eventshandler.Handler1;
 
 import javafx.application.Application;
 import javafx.geometry.HPos;
@@ -14,9 +12,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 public class Program2 extends Application {
-
-    public String fromFind = "1 Dec 2018";
-    public String toFind = "10 Dec 2018";
 
     // variables needed in the program for controls
     private MenuBar upperMenuBar = new MenuBar();
@@ -79,7 +74,9 @@ public class Program2 extends Application {
         // Create the scene and add all the primary elements
         stageConfiguration(stage);
 
-        selectDir.setOnAction(e -> MainHandler.selectDir(fromPathTxt));
+        lookFor.setOnAction(e -> MainHandler.lookForCreation(output, fromTxt.getText(), toTxt.getText(), fromPathTxt.getText()));
+        selectDir.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, fromPathTxt));
+        selectDir1.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, copyPathTxt));
     }
 
     private void mainGridConfiguration(GridPane grid) {
