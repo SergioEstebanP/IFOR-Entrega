@@ -64,7 +64,7 @@ public class MainHandler {
         StringBuffer sb = new StringBuffer();
 
         try {
-            Process command = Runtime.getRuntime().exec(new String[]{"find", fromPath, " -newerct \"" + fromDate + "\" ", "! ", "-newerct \"" + toDate + "\"" ," -ls"});
+            Process command = Runtime.getRuntime().exec("find " + fromPath + " -newerct \"" + fromDate + "\" ! -newerct \"" + toDate + "\" -ls");
         
             command.waitFor();
         
