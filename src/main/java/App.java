@@ -14,6 +14,7 @@ public class App extends Application {
 
     // variables needed in the program for controls
     private MenuBar upperMenuBar = new MenuBar();
+    private MenuBar upperMenuBar2 = new MenuBar();
 
     private Menu program1 = new Menu("Program 1");
     private Menu program2 = new Menu("Program 2");
@@ -37,6 +38,8 @@ public class App extends Application {
     private FileChooser fileChooser = new FileChooser();
     private DirectoryChooser dirChooser = new DirectoryChooser();
 
+    private Label title = new Label("Compare files");
+
     // variables needed for the Program 1 the text in the buttons, labels and
     // other elements change depending on the program selected
     private Label file1Lbl = new Label("File 1");
@@ -48,6 +51,19 @@ public class App extends Application {
     private TextArea diferences = new TextArea();
 
     // variables needed for the Program 2 part A: copy by creation date 
+    private Label fromDate = new Label("From Date");
+    private TextField fromDateTxt = new TextField("");
+    private Label toDate = new Label("To Date");
+    private TextField toDateTxt = new TextField("");
+    private Label fromPath = new Label("From Path");
+    private TextField fromPathTxt = new TextField("");
+    private Button selectDirectory = new Button("Select Dir");
+    private Button startSearch = new Button("Search!");
+    private TextArea output2 = new TextArea();
+    private Label copyLabel = new Label("Copy files in:");
+    private TextField copyTxt = new TextField("");
+    private Button selectDirCopy = new Button("Dir");
+    private Button copy = new Button("Copy");
 
     // variables needed for the Program 2 part B: copy by modification date
 
@@ -63,28 +79,37 @@ public class App extends Application {
     public void start(Stage primaryStage) {
 
         // Configuration of the upper toolbar
-        upperToolbarConfiguration();
+        upperToolbarConfiguration(upperMenuBar);
 
         // Style configuration for the controls
         styleAndFormatConfiguration();
 
-        // Create the different panes to add to the scene 
+        // Create the different panes to add to the program1 scene 
         BorderPane mainPanel = new BorderPane();
         HBox topPane = new HBox(upperMenuBar);
         mainPanel.setTop(topPane);
-
         GridPane centerPane1 = new GridPane();
         mainGridConfiguration(centerPane1);
         mainPanel.setCenter(centerPane1);
 
         file1UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file1Path));
         file2UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file2Path));
+
+
+        upperToolbarConfiguration(upperMenuBar2);
+        BorderPane mainPanel2 = new BorderPane();
+        HBox topPane2 = new HBox(upperMenuBar2);
+        mainPanel2.setTop(topPane2);
+        GridPane centerPane2 = new GridPane();
+        mainPanel2.setCenter(centerPane2);
+
         // Create the scene and add all the primary elements
         stageConfiguration(primaryStage, mainPanel);
 
         // change the scenes
-        p1Dire.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, primaryStage));
-        p1File.setOnAction(e -> MainHandler.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage));
+        p1Dire.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, primaryStage, title));
+        p1File.setOnAction(e -> MainHandler.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage, title));
+        p2CreateDate.setOnAction(e -> stageConfiguration(primaryStage, mainPanel2));
         searchDiferences.setOnAction(e -> MainHandler.lookForDiferences(file1Path, file2Path, diferences));
     }
 
@@ -95,18 +120,23 @@ public class App extends Application {
         grid.setVgap(10);
         
         // adding some buttons
-        grid.add(file1Lbl, 0, 0);
-        grid.add(file1Path, 1, 0);
-        grid.setColumnSpan(file1Path, 4);
-        grid.add(file1UploadBtn, 5, 0);
-        grid.add(file2Lbl, 0, 1);
-        grid.add(file2Path, 1, 1);
-        grid.setColumnSpan(file2Path, 4);
-        grid.add(file2UploadBtn, 5, 1);
-        grid.add(searchDiferences, 0, 2);
-        grid.setColumnSpan(searchDiferences, 4);
-        grid.add(diferences, 0, 3);
-        grid.setColumnSpan(diferences, 7);
+        grid.add(title, 0, 0);
+        grid.setColumnSpan(title, 3);
+        grid.setHalignment(title, HPos.CENTER);
+        grid.add(file1Lbl, 0, 1);
+        grid.add(file1Path, 1, 1);
+        grid.add(file1UploadBtn, 2, 1);
+        grid.setHalignment(file1UploadBtn, HPos.CENTER);
+        grid.add(file2Lbl, 0, 2);
+        grid.add(file2Path, 1, 2);
+        grid.add(file2UploadBtn, 2, 2);
+        grid.setHalignment(file2UploadBtn, HPos.CENTER);
+        grid.add(searchDiferences, 0, 3);
+        grid.setColumnSpan(searchDiferences, 3);
+        grid.setHalignment(searchDiferences, HPos.CENTER);
+        grid.add(diferences, 0, 4);
+        grid.setColumnSpan(diferences, 3);
+        grid.setHalignment(diferences, HPos.CENTER);
 	}
 
 	public static void main(String[] args) {
@@ -114,14 +144,14 @@ public class App extends Application {
     }
 
     private void stageConfiguration (Stage primaryStage, BorderPane mainPanel) {
-        Scene scene = new Scene(mainPanel, 420, 300);
+        Scene scene = new Scene(mainPanel, 500, 380);
         primaryStage.setScene(scene);
         primaryStage.setTitle("IFOR-ENSICS");
         primaryStage.setResizable(true);
         primaryStage.show();
     }
 
-    private void upperToolbarConfiguration () {
+    private void upperToolbarConfiguration (MenuBar upperMenuBar) {
         // Create the menu bar and all the components
         upperMenuBar.getMenus().add(program1);
         upperMenuBar.getMenus().add(program2);
@@ -144,6 +174,8 @@ public class App extends Application {
 
     private void styleAndFormatConfiguration () {
         upperMenuBar.setPrefWidth(600);
+        file1Path.setPrefWidth(250);
+        file2Path.setPrefWidth(250);
     }
 
 }

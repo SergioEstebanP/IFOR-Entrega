@@ -12,22 +12,24 @@ import javafx.stage.Stage;
 import java.io.*;
 
 public class MainHandler {
-    public static void changeToDirectoriesScene(Label lbl1, Label lbl2, TextField txt1, TextField txt2, Button btn1, Button btn2, DirectoryChooser dc, Stage stage) {
+    public static void changeToDirectoriesScene(Label lbl1, Label lbl2, TextField txt1, TextField txt2, Button btn1, Button btn2, DirectoryChooser dc, Stage stage, Label title) {
         lbl1.setText("Directory 1");
         lbl2.setText("Directory 2");
         btn1.setText("Select Directory");
         btn2.setText("Select Directory");
         btn1.setOnAction(e -> Handler1.selectDirectory(dc, stage, txt1));
         btn2.setOnAction(e -> Handler1.selectDirectory(dc, stage, txt2));
+        title.setText("Searching differences between directories");
     }
 
-    public static void changeToFilesScene(Label lbl1, Label lbl2, TextField txt1, TextField txt2, Button btn1, Button btn2, FileChooser fc, Stage stage) {
+    public static void changeToFilesScene(Label lbl1, Label lbl2, TextField txt1, TextField txt2, Button btn1, Button btn2, FileChooser fc, Stage stage, Label title) {
         lbl1.setText("File 1");
         lbl2.setText("File 2");
         btn1.setText("Select File");
         btn2.setText("Select File");
         btn1.setOnAction(e -> Handler1.selectFile(fc, stage, txt1));
         btn2.setOnAction(e -> Handler1.selectFile(fc, stage, txt2));
+        title.setText("Searching differences between files");
     }
 
     public static void lookForDiferences (TextField txt1, TextField txt2, TextArea output) {
