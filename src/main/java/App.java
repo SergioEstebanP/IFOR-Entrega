@@ -1,4 +1,5 @@
 import eventshandler.MainHandler;
+import eventshandler.program1handlers.*;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -6,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -31,8 +33,9 @@ public class App extends Application {
 
     private MenuItem about = new MenuItem("Information");
 
-    private Button searchDiferences = new Button("Buscar Diferencias");
+    private Button searchDiferences = new Button("Compare files");
     private FileChooser fileChooser = new FileChooser();
+    private DirectoryChooser dirChooser = new DirectoryChooser();
 
     // variables needed for the Program 1 the text in the buttons, labels and
     // other elements change depending on the program selected
@@ -73,12 +76,16 @@ public class App extends Application {
         GridPane centerPane1 = new GridPane();
         mainGridConfiguration(centerPane1);
         mainPanel.setCenter(centerPane1);
+
+        file1UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file1Path));
+        file2UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file2Path));
         // Create the scene and add all the primary elements
         stageConfiguration(primaryStage, mainPanel);
 
         // change the scenes
-        p1Dire.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage));
+        p1Dire.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, primaryStage));
         p1File.setOnAction(e -> MainHandler.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage));
+        searchDiferences.setOnAction(e -> MainHandler.lookForDiferences(file1Path, file2Path, diferences));
     }
 
     private void mainGridConfiguration(GridPane grid) {
@@ -107,7 +114,7 @@ public class App extends Application {
     }
 
     private void stageConfiguration (Stage primaryStage, BorderPane mainPanel) {
-        Scene scene = new Scene(mainPanel, 390, 300);
+        Scene scene = new Scene(mainPanel, 420, 300);
         primaryStage.setScene(scene);
         primaryStage.setTitle("IFOR-ENSICS");
         primaryStage.setResizable(true);
