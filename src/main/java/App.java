@@ -40,6 +40,8 @@ public class App extends Application {
 
     private Label title = new Label("Compare files");
 
+    private Stage stage;
+
     // variables needed for the Program 1 the text in the buttons, labels and
     // other elements change depending on the program selected
     private Label file1Lbl = new Label("File 1");
@@ -49,6 +51,7 @@ public class App extends Application {
     private TextField file1Path = new TextField("");
     private TextField file2Path = new TextField("");
     private TextArea diferences = new TextArea();
+    private Scene scene1;
 
     // variables needed for the Program 2 part A: copy by creation date 
     private Label fromDate = new Label("From Date");
@@ -64,6 +67,8 @@ public class App extends Application {
     private TextField copyTxt = new TextField("");
     private Button selectDirCopy = new Button("Dir");
     private Button copy = new Button("Copy");
+    private Scene scene2;
+    private Stage stage2;
 
     // variables needed for the Program 2 part B: copy by modification date
 
@@ -78,6 +83,8 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        stage = primaryStage;
+
         // Configuration of the upper toolbar
         upperToolbarConfiguration(upperMenuBar);
 
@@ -91,6 +98,8 @@ public class App extends Application {
         GridPane centerPane1 = new GridPane();
         mainGridConfiguration(centerPane1);
         mainPanel.setCenter(centerPane1);
+        scene1 = new Scene(mainPanel, 500, 380);
+        stage.setScene(scene1);
 
         file1UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file1Path));
         file2UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file2Path));
@@ -102,15 +111,16 @@ public class App extends Application {
         mainPanel2.setTop(topPane2);
         GridPane centerPane2 = new GridPane();
         mainPanel2.setCenter(centerPane2);
+        scene2 = new Scene(mainPanel2, 500, 380);
 
         // Create the scene and add all the primary elements
-        stageConfiguration(primaryStage, mainPanel);
+        stageConfiguration(stage);
 
         // change the scenes
         p1Dire.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, primaryStage, title));
-        p1Dire.setOnAction(e -> primaryStage.setScene(new Scene(mainPanel)));
+        p1Dire.setOnAction(e -> stage.setScene(scene1));
         p1File.setOnAction(e -> MainHandler.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, primaryStage, title));
-        p2CreateDate.setOnAction(e -> stageConfiguration(primaryStage, mainPanel2));
+        p2CreateDate.setOnAction(e -> stage.setScene(scene2));
         searchDiferences.setOnAction(e -> MainHandler.lookForDiferences(file1Path, file2Path, diferences));
     }
 
@@ -144,12 +154,10 @@ public class App extends Application {
         launch();
     }
 
-    private void stageConfiguration (Stage primaryStage, BorderPane mainPanel) {
-        Scene scene = new Scene(mainPanel, 500, 380);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("IFOR-ENSICS");
-        primaryStage.setResizable(true);
-        primaryStage.show();
+    private void stageConfiguration (Stage stage) {
+        stage.setTitle("IFOR-ENSICS");
+        stage.setResizable(true);
+        stage.show();
     }
 
     private void upperToolbarConfiguration (MenuBar upperMenuBar) {

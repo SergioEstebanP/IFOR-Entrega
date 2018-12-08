@@ -19,3 +19,8 @@ javafx {
     modules = [ 'javafx.controls' ]
     version = "11.0.+"
 }
+
+task p1(type: JavaExec) {
+  main = 'main.java.Hola'
+  classpath sourceSets.main.runtimeClasspath
+}
