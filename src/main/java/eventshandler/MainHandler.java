@@ -57,4 +57,8 @@ public class MainHandler {
             e.printStackTrace();
         }
     }
+
+    public static void selectDir (TextField dirTxt) {
+        Handler2.selectDir(dirTxt);
+    }
 }

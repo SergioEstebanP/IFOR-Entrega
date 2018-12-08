@@ -66,7 +66,7 @@ set CMD_LINE_ARGS=%*
 set CLASSPATH=
 
 @rem Execute IFOR-Entrega
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IFOR_ENTREGA_OPTS%  -classpath "%CLASSPATH%" App %CMD_LINE_ARGS%
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IFOR_ENTREGA_OPTS%  -classpath "%CLASSPATH%" Program2 %CMD_LINE_ARGS%
 
 :end
 @rem End local scope for the variables with windows NT shell

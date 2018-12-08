@@ -4,7 +4,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.5'
 }
 
-mainClassName = 'App'
+mainClassName = 'Program2'
 
 dependencies {
     compile 'com.google.guava:guava:23.0'
@@ -18,9 +18,4 @@ repositories {
 javafx {
     modules = [ 'javafx.controls' ]
     version = "11.0.+"
-}
-
-task p1(type: JavaExec) {
-  main = 'main.java.Hola'
-  classpath sourceSets.main.runtimeClasspath
 }
