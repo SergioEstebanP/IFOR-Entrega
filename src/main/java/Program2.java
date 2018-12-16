@@ -1,5 +1,5 @@
-import eventshandler.MainHandler;
-import eventshandler.Handler1;
+import eventshandler.CommonHandler;
+import eventshandler.Handler2;
 
 import javafx.application.Application;
 import javafx.geometry.HPos;
@@ -70,7 +70,7 @@ public class Program2 extends Application {
 
         colName.setCellValueFactory(new PropertyValueFactory<Files, String>("Name"));
         colPath.setCellValueFactory(new PropertyValueFactory<Files, String>("Path"));
-
+        table.getColumns().addAll(colName, colPath);
         // Create the different panes to add to the program1 scene 
         BorderPane mainPanel = new BorderPane();
         HBox topPane = new HBox(upperMenuBar);
@@ -85,15 +85,15 @@ public class Program2 extends Application {
         stageConfiguration(stage);
 
         // Added main handler actions and events
-        lookFor.setOnAction(e -> MainHandler.lookForCreation(table, colName, colPath, fromTxt, toTxt, fromPathTxt));
-        selectDir.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, fromPathTxt));
-        selectDir1.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, copyPathTxt));
-        copy.setOnAction(e -> MainHandler.copyToGivenDir(copyPathTxt, table));
+        lookFor.setOnAction(e -> Handler2.lookForCreation(table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        selectDir.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, fromPathTxt));
+        selectDir1.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, copyPathTxt));
+        copy.setOnAction(e -> CommonHandler.copyToGivenDir(copyPathTxt, table));
 
         // Added functionality to change between scences
-        creation.setOnAction(e -> MainHandler.changeToCreationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
-        modification.setOnAction(e -> MainHandler.changeToModificationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
-        access.setOnAction(e -> MainHandler.changeToAccessScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        creation.setOnAction(e -> Handler2.changeToCreationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        modification.setOnAction(e -> Handler2.changeToModificationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        access.setOnAction(e -> Handler2.changeToAccessScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
     }
 
     private void mainGridConfiguration(GridPane grid) {

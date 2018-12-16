@@ -1,5 +1,5 @@
-import eventshandler.MainHandler;
-import eventshandler.Handler1;
+import eventshandler.CommonHandler;
+import eventshandler.Handler3;
 
 import javafx.application.Application;
 import javafx.geometry.HPos;
@@ -82,14 +82,10 @@ public class Program3 extends Application {
         stageConfiguration(stage);
 
         // Added main handler actions and events
-        lookFor.setOnAction(e -> MainHandler.lookForExtension(table, colName, colPath, extensionTxt, fromPathTxt));
-        selectDir.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, fromPathTxt));
-        selectDir1.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, copyPathTxt));
-        copy.setOnAction(e -> MainHandler.copyToGivenDir(copyPathTxt, table));
-
-        // Added functionality to change between scences
-        //extensions.setOnAction(e -> MainHandler.changeToExtensionScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
-        //magicNumbers.setOnAction(e -> MainHandler.changeToNumbersScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        lookFor.setOnAction(e -> Handler3.lookForExtension(table, colName, colPath, extensionTxt, fromPathTxt));
+        selectDir.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, fromPathTxt));
+        selectDir1.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, copyPathTxt));
+        copy.setOnAction(e -> CommonHandler.copyToGivenDir(copyPathTxt, table));
     }
 
     private void mainGridConfiguration(GridPane grid) {

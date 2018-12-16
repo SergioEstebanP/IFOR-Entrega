@@ -1,4 +1,4 @@
-import eventshandler.MainHandler;
+import eventshandler.CommonHandler;
 import eventshandler.Handler1;
 
 import javafx.application.Application;
@@ -68,14 +68,13 @@ public class Program1 extends Application {
         file1UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file1Path));
         file2UploadBtn.setOnAction(e -> Handler1.selectFile(fileChooser, primaryStage, file2Path));
 
-
         // Create the scene and add all the primary elements
         stageConfiguration(stage);
 
         // change the scenes
-        dir.setOnAction(e -> MainHandler.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, stage, title));
-        file.setOnAction(e -> MainHandler.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, stage, title));
-        searchDiferences.setOnAction(e -> MainHandler.lookForDiferences(file1Path, file2Path, diferences));
+        dir.setOnAction(e -> Handler1.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, stage, title));
+        file.setOnAction(e -> Handler1.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, stage, title));
+        searchDiferences.setOnAction(e -> Handler1.lookForDiferences(file1Path, file2Path, diferences));
     }
 
     private void mainGridConfiguration(GridPane grid) {
