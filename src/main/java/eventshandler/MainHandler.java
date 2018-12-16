@@ -4,10 +4,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import main.java.Files;
+
 import java.io.*;
+import java.util.ArrayList;
+import javafx.collections.*;
 
 public class MainHandler {
     public static void changeToDirectoriesScene(Label lbl1, Label lbl2, TextField txt1, TextField txt2, Button btn1, Button btn2, DirectoryChooser dc, Stage stage, Label title) {
@@ -60,10 +65,10 @@ public class MainHandler {
         Handler1.selectDirectory(dc, stage, dirTxt);
     }
 
-    public static void lookForCreation (TextArea output, String fromDate, String toDate, String fromPath) {
+    public static void lookForCreation (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, String fromDate, String toDate, String fromPath) {
         StringBuffer sb = new StringBuffer();
         String stringCommand = "find " + fromPath + " -newerct \"" + fromDate + "\" ! -newerct \"" + toDate + "\"";
-
+        ArrayList<String> fileList = new ArrayList<String>();
         try {
             Process command = Runtime.getRuntime().exec(new String[]{"bash", "-c", stringCommand});
         
@@ -74,11 +79,22 @@ public class MainHandler {
             String s;
             String commandOutput = "";			
             while ((commandOutput = reader.readLine())!= null) {
-                sb.append(commandOutput + "\n");
+                fileList.add(commandOutput);
             }
-            output.setText(sb.toString());
+            //output.setText(sb.toString());
+
+            table.setItems(loadData(fileList));
+            table.getColumns().addAll(col1, col2);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static ObservableList<Files> loadData(ArrayList<String> fileList) {
+        ObservableList<Files> data = FXCollections.observableArrayList();
+        for (int i=0; i<fileList.size(); i++) {
+            data.add(new Files(fileList.get(i)));
+        }
+        return data;
     }
 }

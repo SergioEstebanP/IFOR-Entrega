@@ -6,10 +6,13 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.*;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+
+import main.java.Files;
 
 public class Program2 extends Application {
 
@@ -43,7 +46,12 @@ public class Program2 extends Application {
     private Button selectDir = new Button("Dir");
     private Button lookFor = new Button("Look for!");
 
-    private TextArea output = new TextArea();
+    //private TextArea output = new TextArea();
+    private TableView<Files> table = new TableView<Files>();
+
+    private TableColumn<Files, String> colName = new TableColumn<Files, String>("Name");
+    private TableColumn<Files, String> colPath = new TableColumn<Files, String>("Path");
+
 
     private Label copyPath = new Label("Copy in path");
     private TextField copyPathTxt = new TextField();
@@ -61,6 +69,9 @@ public class Program2 extends Application {
         // Style configuration for the controls
         styleAndFormatConfiguration();
 
+        colName.setCellValueFactory(new PropertyValueFactory<Files, String>("Name"));
+        colPath.setCellValueFactory(new PropertyValueFactory<Files, String>("Path"));
+
         // Create the different panes to add to the program1 scene 
         BorderPane mainPanel = new BorderPane();
         HBox topPane = new HBox(upperMenuBar);
@@ -74,7 +85,7 @@ public class Program2 extends Application {
         // Create the scene and add all the primary elements
         stageConfiguration(stage);
 
-        lookFor.setOnAction(e -> MainHandler.lookForCreation(output, fromTxt.getText(), toTxt.getText(), fromPathTxt.getText()));
+        lookFor.setOnAction(e -> MainHandler.lookForCreation(table, colName, colPath, fromTxt.getText(), toTxt.getText(), fromPathTxt.getText()));
         selectDir.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, fromPathTxt));
         selectDir1.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, copyPathTxt));
     }
@@ -102,8 +113,8 @@ public class Program2 extends Application {
         grid.setColumnSpan(lookFor, 4);
         grid.setHalignment(lookFor, HPos.CENTER);
 
-        grid.add(output, 0, 5);
-        grid.setColumnSpan(output, 4);
+        grid.add(table, 0, 5);
+        grid.setColumnSpan(table, 4);
 
         grid.add(copyPath, 0, 6);
         grid.add(copyPathTxt, 1, 6);
@@ -134,10 +145,11 @@ public class Program2 extends Application {
 
     private void styleAndFormatConfiguration () {
         upperMenuBar.setPrefWidth(600);
-
         fromPathTxt.setEditable(false);
-        output.setEditable(false);
+        //output.setEditable(false);
         copyPathTxt.setEditable(false);
+
     }
+
 
 }
