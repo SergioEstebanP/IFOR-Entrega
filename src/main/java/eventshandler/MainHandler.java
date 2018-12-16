@@ -62,27 +62,20 @@ public class MainHandler {
 
     public static void lookForCreation (TextArea output, String fromDate, String toDate, String fromPath) {
         StringBuffer sb = new StringBuffer();
+        String stringCommand = "find " + fromPath + " -newerct \"" + fromDate + "\" ! -newerct \"" + toDate + "\"";
 
         try {
-            Process command = Runtime.getRuntime().exec("find " + fromPath + " -newerct \"" + fromDate + "\" ! -newerct \"" + toDate + "\" -ls");
+            Process command = Runtime.getRuntime().exec(new String[]{"bash", "-c", stringCommand});
         
             command.waitFor();
         
             BufferedReader reader = new BufferedReader(new InputStreamReader(command.getInputStream()));
-        
             BufferedReader stdError = new BufferedReader(new InputStreamReader(command.getErrorStream()));
-
-            // read any errors from the attempted command
             String s;
-            while ((s = stdError.readLine()) != null) {
-                System.out.println(s);
-            }
-
             String commandOutput = "";			
             while ((commandOutput = reader.readLine())!= null) {
                 sb.append(commandOutput + "\n");
             }
-            System.out.println(sb.toString());
             output.setText(sb.toString());
         } catch (Exception e) {
             e.printStackTrace();
