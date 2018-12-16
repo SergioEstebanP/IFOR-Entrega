@@ -4,7 +4,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.5'
 }
 
-mainClassName = 'Program2'
+mainClassName = 'Program1'
 
 dependencies {
     compile 'com.google.guava:guava:23.0'

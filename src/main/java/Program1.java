@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class Program1 extends Application {
 
-    // variables needed in the program for controls
+    // Main controls of the program
     private MenuBar upperMenuBar = new MenuBar();
 
     private Menu tools = new Menu("Tools");
@@ -33,14 +33,15 @@ public class Program1 extends Application {
 
     private Stage stage;
 
-    // variables needed for the Program 1 the text in the buttons, labels and
-    // other elements change depending on the program selected
     private Label file1Lbl = new Label("File 1");
     private Label file2Lbl = new Label("File 2");
+
     private Button file1UploadBtn = new Button("Select File");
     private Button file2UploadBtn = new Button("Select File");
+
     private TextField file1Path = new TextField("");
     private TextField file2Path = new TextField("");
+
     private TextArea diferences = new TextArea();
     private Scene scene1;
 
@@ -75,6 +76,8 @@ public class Program1 extends Application {
         dir.setOnAction(e -> Handler1.changeToDirectoriesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, dirChooser, stage, title));
         file.setOnAction(e -> Handler1.changeToFilesScene(file1Lbl, file2Lbl, file1Path, file2Path, file1UploadBtn, file2UploadBtn, fileChooser, stage, title));
         searchDiferences.setOnAction(e -> Handler1.lookForDiferences(file1Path, file2Path, diferences));
+
+        about.setOnAction(e -> CommonHandler.showInformation());
     }
 
     private void mainGridConfiguration(GridPane grid) {
@@ -125,13 +128,13 @@ public class Program1 extends Application {
 
     private void styleAndFormatConfiguration () {
         upperMenuBar.setPrefWidth(600);
-
         file1Path.setPrefWidth(250);
         file2Path.setPrefWidth(250);
         file1Path.setEditable(false);
         file2Path.setEditable(false);
-
         diferences.setEditable(false);
+        file1Path.setPromptText("Insert a path: /home/user/file1");
+        file2Path.setPromptText("Insert a path: /home/user/file2");
     }
 
 }

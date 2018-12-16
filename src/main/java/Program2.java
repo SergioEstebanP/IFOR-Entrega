@@ -68,9 +68,6 @@ public class Program2 extends Application {
         // Style configuration for the controls
         styleAndFormatConfiguration();
 
-        colName.setCellValueFactory(new PropertyValueFactory<Files, String>("Name"));
-        colPath.setCellValueFactory(new PropertyValueFactory<Files, String>("Path"));
-        table.getColumns().addAll(colName, colPath);
         // Create the different panes to add to the program1 scene 
         BorderPane mainPanel = new BorderPane();
         HBox topPane = new HBox(upperMenuBar);
@@ -89,6 +86,7 @@ public class Program2 extends Application {
         selectDir.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, fromPathTxt));
         selectDir1.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, copyPathTxt));
         copy.setOnAction(e -> CommonHandler.copyToGivenDir(copyPathTxt, table));
+        about.setOnAction(e -> CommonHandler.showInformation());
 
         // Added functionality to change between scences
         creation.setOnAction(e -> Handler2.changeToCreationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
@@ -101,27 +99,21 @@ public class Program2 extends Application {
         grid.setPadding(new Insets(10));
         grid.setHgap(10);
         grid.setVgap(10);
-
         grid.add(title, 0, 0);
         grid.setColumnSpan(title, 4);
         grid.setHalignment(title, HPos.CENTER);
-
         grid.add(fromDate, 0, 1);
         grid.add(toDate, 1, 1);
         grid.add(fromTxt, 0, 2);
         grid.add(toTxt, 1, 2);
-
         grid.add(fromPath, 0, 3);
         grid.add(fromPathTxt, 1, 3);
         grid.add(selectDir, 2, 3);
-
         grid.add(lookFor, 0, 4);
         grid.setColumnSpan(lookFor, 4);
         grid.setHalignment(lookFor, HPos.CENTER);
-
         grid.add(table, 0, 5);
         grid.setColumnSpan(table, 4);
-
         grid.add(copyPath, 0, 6);
         grid.add(copyPathTxt, 1, 6);
         grid.add(selectDir1, 2, 6);
@@ -153,8 +145,8 @@ public class Program2 extends Application {
         upperMenuBar.setPrefWidth(600);
         fromPathTxt.setEditable(false);
         copyPathTxt.setEditable(false);
-
+        colName.setCellValueFactory(new PropertyValueFactory<Files, String>("Name"));
+        colPath.setCellValueFactory(new PropertyValueFactory<Files, String>("Path"));
+        table.getColumns().addAll(colName, colPath);
     }
-
-
 }

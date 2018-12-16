@@ -70,4 +70,12 @@ public class CommonHandler {
             e.printStackTrace();
         }
     }
+
+    public static void showInformation() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("IFOR-ENSICS");
+        alert.setHeaderText("Forensic Software for Students");
+        alert.setContentText("Author: Sergio Esteban Pellejero\nVersion: 1.0");
+        alert.show();
+    }
 }
