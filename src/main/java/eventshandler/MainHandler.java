@@ -66,9 +66,9 @@ public class MainHandler {
         Handler1.selectDirectory(dc, stage, dirTxt);
     }
 
-    public static void lookForCreation (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, String fromDate, String toDate, String fromPath) {
+    public static void lookForCreation (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
         StringBuffer sb = new StringBuffer();
-        String stringCommand = "find " + fromPath + " -newerct \"" + fromDate + "\" ! -newerct \"" + toDate + "\"";
+        String stringCommand = "find " + fromPath.getText() + " -newerct \"" + fromDate.getText() + "\" ! -newerct \"" + toDate.getText() + "\"";
         ArrayList<String> fileList = new ArrayList<String>();
         try {
             Process command = Runtime.getRuntime().exec(new String[]{"bash", "-c", stringCommand});
@@ -83,6 +83,56 @@ public class MainHandler {
                 fileList.add(commandOutput);
             }
             //output.setText(sb.toString());
+
+            table.setItems(loadData(fileList));
+            table.getColumns().addAll(col1, col2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void lookForModification (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
+        StringBuffer sb = new StringBuffer();
+        String stringCommand = "find " + fromPath.getText() + " -newermt \"" + fromDate.getText() + "\" ! -newermt \"" + toDate.getText() + "\"";
+        System.out.println(stringCommand);
+        ArrayList<String> fileList = new ArrayList<String>();
+        try {
+            Process command = Runtime.getRuntime().exec(new String[]{"bash", "-c", stringCommand});
+        
+            command.waitFor();
+        
+            BufferedReader reader = new BufferedReader(new InputStreamReader(command.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(command.getErrorStream()));
+            String s;
+            String commandOutput = "";			
+            while ((commandOutput = reader.readLine())!= null) {
+                fileList.add(commandOutput);
+            }
+            //output.setText(sb.toString());
+
+            table.setItems(loadData(fileList));
+            table.getColumns().addAll(col1, col2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void lookForAccess (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
+        StringBuffer sb = new StringBuffer();
+        String stringCommand = "find " + fromPath.getText() + " -newerat \"" + fromDate.getText() + "\" ! -newerat \"" + toDate.getText() + "\"";
+        System.out.println(stringCommand);
+        ArrayList<String> fileList = new ArrayList<String>();
+        try {
+            Process command = Runtime.getRuntime().exec(new String[]{"bash", "-c", stringCommand});
+        
+            command.waitFor();
+        
+            BufferedReader reader = new BufferedReader(new InputStreamReader(command.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(command.getErrorStream()));
+            String s;
+            String commandOutput = "";			
+            while ((commandOutput = reader.readLine())!= null) {
+                fileList.add(commandOutput);
+            }
 
             table.setItems(loadData(fileList));
             table.getColumns().addAll(col1, col2);
@@ -121,5 +171,20 @@ public class MainHandler {
             alert.setContentText("Copy done successfully!");
             alert.show();
         }
+    }
+
+    public static void changeToCreationScene(Label title, Button button, TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
+        title.setText("Search created files between a date range"); 
+        button.setOnAction(e -> lookForCreation(table, col1, col2, fromDate, toDate, fromPath));
+    }
+
+    public static void changeToModificationScene(Label title, Button button, TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
+        title.setText("Search modificated files between a date range"); 
+        button.setOnAction(e -> lookForModification(table, col1, col2, fromDate, toDate, fromPath));
+    }
+
+    public static void changeToAccessScene(Label title, Button button, TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
+        title.setText("Search last access files between a date range"); 
+        button.setOnAction(e -> lookForAccess(table, col1, col2, fromDate, toDate, fromPath));
     }
 }

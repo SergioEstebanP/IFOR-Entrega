@@ -31,7 +31,7 @@ public class Program2 extends Application {
 
     private DirectoryChooser dirChooser = new DirectoryChooser();
 
-    private Label title = new Label("Searching files");
+    private Label title = new Label("Searching files between a creation date range");
 
     private Stage stage;
     private Scene scene;
@@ -46,7 +46,6 @@ public class Program2 extends Application {
     private Button selectDir = new Button("Dir");
     private Button lookFor = new Button("Look for!");
 
-    //private TextArea output = new TextArea();
     private TableView<Files> table = new TableView<Files>();
 
     private TableColumn<Files, String> colName = new TableColumn<Files, String>("Name");
@@ -85,10 +84,16 @@ public class Program2 extends Application {
         // Create the scene and add all the primary elements
         stageConfiguration(stage);
 
-        lookFor.setOnAction(e -> MainHandler.lookForCreation(table, colName, colPath, fromTxt.getText(), toTxt.getText(), fromPathTxt.getText()));
+        // Added main handler actions and events
+        lookFor.setOnAction(e -> MainHandler.lookForCreation(table, colName, colPath, fromTxt, toTxt, fromPathTxt));
         selectDir.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, fromPathTxt));
         selectDir1.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, copyPathTxt));
         copy.setOnAction(e -> MainHandler.copyToGivenDir(copyPathTxt, table));
+
+        // Added functionality to change between scences
+        creation.setOnAction(e -> MainHandler.changeToCreationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        modification.setOnAction(e -> MainHandler.changeToModificationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        access.setOnAction(e -> MainHandler.changeToAccessScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
     }
 
     private void mainGridConfiguration(GridPane grid) {
@@ -147,7 +152,6 @@ public class Program2 extends Application {
     private void styleAndFormatConfiguration () {
         upperMenuBar.setPrefWidth(600);
         fromPathTxt.setEditable(false);
-        //output.setEditable(false);
         copyPathTxt.setEditable(false);
 
     }
