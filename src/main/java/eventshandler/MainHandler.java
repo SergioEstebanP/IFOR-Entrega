@@ -141,6 +141,9 @@ public class MainHandler {
         }
     }
 
+    public static void lookForExtension (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
+    }
+
     public static ObservableList<Files> loadData(ArrayList<String> fileList) {
         ObservableList<Files> data = FXCollections.observableArrayList();
         for (int i=0; i<fileList.size(); i++) {
@@ -187,4 +190,5 @@ public class MainHandler {
         title.setText("Search last access files between a date range"); 
         button.setOnAction(e -> lookForAccess(table, col1, col2, fromDate, toDate, fromPath));
     }
+
 }
