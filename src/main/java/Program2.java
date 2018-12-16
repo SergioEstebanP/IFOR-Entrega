@@ -88,6 +88,7 @@ public class Program2 extends Application {
         lookFor.setOnAction(e -> MainHandler.lookForCreation(table, colName, colPath, fromTxt.getText(), toTxt.getText(), fromPathTxt.getText()));
         selectDir.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, fromPathTxt));
         selectDir1.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, copyPathTxt));
+        copy.setOnAction(e -> MainHandler.copyToGivenDir(copyPathTxt, table));
     }
 
     private void mainGridConfiguration(GridPane grid) {
