@@ -85,7 +85,6 @@ public class MainHandler {
             //output.setText(sb.toString());
 
             table.setItems(loadData(fileList));
-            table.getColumns().addAll(col1, col2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,7 +109,6 @@ public class MainHandler {
             //output.setText(sb.toString());
 
             table.setItems(loadData(fileList));
-            table.getColumns().addAll(col1, col2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,13 +133,29 @@ public class MainHandler {
             }
 
             table.setItems(loadData(fileList));
-            table.getColumns().addAll(col1, col2);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void lookForExtension (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField fromDate, TextField toDate, TextField fromPath) {
+    public static void lookForExtension (TableView<Files> table, TableColumn<Files, String> col1, TableColumn<Files, String> col2, TextField extension, TextField fromPath) {
+        StringBuffer sb = new StringBuffer();
+        String stringCommand = "find " + fromPath.getText() + " " + "-type f -name '*." + extension.getText() + "'";
+        ArrayList<String> fileList = new ArrayList<String>();
+        try {
+            Process command = Runtime.getRuntime().exec(new String[]{"bash", "-c", stringCommand});
+            command.waitFor();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(command.getInputStream()));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(command.getErrorStream()));
+            String s;
+            String commandOutput = "";			
+            while ((commandOutput = reader.readLine())!= null) {
+                fileList.add(commandOutput);
+            }
+            table.setItems(loadData(fileList));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static ObservableList<Files> loadData(ArrayList<String> fileList) {

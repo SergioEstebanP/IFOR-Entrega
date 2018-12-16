@@ -69,6 +69,8 @@ This program has three diferent functionalities:
 ### Program 3
 ---
 
+This program has two diferent functionalities:
+- **Search files filtering by extension**: given a file extension and a root directory, the user is abel to look for all the files tino the given directory. Once the files are found, then the user is able to copy them into a diferent folder, previously selected by the user. 
+- **Search files filtering by magic numbers**: this function is not implemented yet. But basically the user should be able to look for files by some magic unmbers provided by an external program. 
 
-
-
+![Example Program 3](readmeDocs/example3.png "Example GUI Program 3")

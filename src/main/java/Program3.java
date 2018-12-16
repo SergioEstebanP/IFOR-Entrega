@@ -35,18 +35,13 @@ public class Program3 extends Application {
     private Stage stage;
     private Scene scene;
 
-    private Label fromDate = new Label("From Date");
-    private TextField fromTxt = new TextField();
-    private Label toDate = new Label("To Date");
-    private TextField toTxt = new TextField();
+    private Label extensionLbl = new Label("Extension");
+    private TextField extensionTxt = new TextField();
 
     private Label fromPath = new Label("From path");
     private TextField fromPathTxt = new TextField();
     private Button selectDir = new Button("Dir");
     private Button lookFor = new Button("Look for!");
-
-    private Label extensionLbl = new Label("Extension");
-    private TextField extensionTxt = new TextField();
 
     private TableView<Files> table = new TableView<Files>();
 
@@ -61,7 +56,6 @@ public class Program3 extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         stage = primaryStage;
 
         // Configuration of the upper toolbar
@@ -72,6 +66,7 @@ public class Program3 extends Application {
 
         colName.setCellValueFactory(new PropertyValueFactory<Files, String>("Name"));
         colPath.setCellValueFactory(new PropertyValueFactory<Files, String>("Path"));
+        table.getColumns().addAll(colName, colPath);
 
         // Create the different panes to add to the program1 scene 
         BorderPane mainPanel = new BorderPane();
@@ -87,7 +82,7 @@ public class Program3 extends Application {
         stageConfiguration(stage);
 
         // Added main handler actions and events
-        lookFor.setOnAction(e -> MainHandler.lookForExtension(table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        lookFor.setOnAction(e -> MainHandler.lookForExtension(table, colName, colPath, extensionTxt, fromPathTxt));
         selectDir.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, fromPathTxt));
         selectDir1.setOnAction(e -> MainHandler.selectDir(dirChooser, stage, copyPathTxt));
         copy.setOnAction(e -> MainHandler.copyToGivenDir(copyPathTxt, table));
@@ -107,12 +102,8 @@ public class Program3 extends Application {
         grid.setColumnSpan(title, 4);
         grid.setHalignment(title, HPos.CENTER);
 
-        grid.add(fromDate, 0, 1);
-        grid.add(toDate, 1, 1);
-        grid.add(fromTxt, 0, 2);
-        grid.add(toTxt, 1, 2);
-        grid.add(extensionLbl, 0, 3);
-        grid.add(extensionTxt, 1, 3);
+        grid.add(extensionLbl, 0, 2);
+        grid.add(extensionTxt, 1, 2);
 
         grid.add(fromPath, 0, 3);
         grid.add(fromPathTxt, 1, 3);
@@ -155,8 +146,9 @@ public class Program3 extends Application {
         upperMenuBar.setPrefWidth(600);
         fromPathTxt.setEditable(false);
         copyPathTxt.setEditable(false);
-
+        table.setPrefWidth(600);
+        fromPathTxt.setPromptText("/home/user/directory");
+        copyPathTxt.setPromptText("/home/user/directory");
+        extensionTxt.setPromptText("py");
     }
-
-
 }
