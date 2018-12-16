@@ -19,3 +19,9 @@ javafx {
     modules = [ 'javafx.controls' ]
     version = "11.0.+"
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Program1'
+    }
+}
