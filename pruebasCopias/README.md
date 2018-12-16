@@ -6,12 +6,13 @@ Making a small GUI oriented to a little suite of forensics applications. With th
 
 ## Table of Contents
 
-1. [Objectives](#-objectives)
-2. [Tools used in the project](#-tools-used-in-the-project)
-3. [Run the software](#-running-the-software)
-4. [Program 1](#-program-1)
-5. [Program 2](#-program-2)
-6. [Program 3](#-program-3)
+1. Objective
+2. Tools used in the project
+2. Program 1
+    1. Files differences.
+    2. Directory differences.
+3. Program 2
+4. Program 3
 
 ### Objectives
 ---
@@ -26,23 +27,6 @@ Main tools used are:
 - **Gradle**: for build the project and make all the folders and settings to the project. Combined with intellij for download dependencies, it is so powerful. You can get more information at [Gradle](https://gradle.org/)
 - **Github**: to have a control version and share knowledge with rest of the world. You can find more software projects in my Github account. 
 - **JavaFX**: the future of graphics in Java, it combine the power of CSS and the simplicity of awt to make bright and colourful gui's. See [JavaFX documentation](https://www.oracle.com/technetwork/java/javafx/documentation/index.html) to get more information. 
-
-### Running the software
----
-
-There is only one condition required to run this software. You must have installed [JDK 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html). Be sure that your enviromental variable for java is poiting to the JDK 11 distribution, if not, the software will not run. 
-
-In theory you don't need gradle, because the gradle wrapper makes all the work. In case the gradle wrapper fails in the execution, you must install gradle in your computer and, as told before, make sure the envormental variable for gradle is poiting to the last version. For this software you need [Gradle 4.10.2](https://gradle.org/next-steps/?version=4.10.2&format=all). 
-
-To run this software, you have to specify in the [build.gradle](build.gradle) file the Program to run. You must change there the variable mainClassName. The values accepted are:
-
-- ```mainClassName = 'Program1' ```: to run the program related to search diferences.
-
-- ```mainClassName = 'Program2' ```: to run the program related to search files between date ranges. 
-
-- ```mainClassName = 'Program3' ```: to run the program related to searach files by the extension or magic numbers. 
-
-![Build.gradle file](readmeDocs/build.png "Build.gradle file configuration")
 
 ### Program 1
 ---
@@ -63,8 +47,9 @@ This program has three diferent functionalities:
 - **Search for modified files between a date range**: if you go to the Tools menu in the upper bar, your're able to select the functionality which you have to run. This allows you to look for by the modified files within a date range into a folder. 
 - **Search for accessed files between a date range**: if you go to the Tools menu in the upper bar, your're able to select the functionality which you have to run. This allows you to look for by the accessed files within a date range into a folder. 
 
-![Example Program 2](readmeDocs/example2.png "Example GUI Program 2")
+![Example Program 2](readmeDocs/2xample1.png "Example GUI Program 2")
 
+In the two cases, if the program doesn't find any diferences, show a message lie No differences were found. You can select which version of the program you want to run by clicking in Tools menus in the upper bar. 
 
 ### Program 3
 ---
