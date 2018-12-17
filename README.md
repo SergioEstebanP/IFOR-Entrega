@@ -69,7 +69,7 @@ This program has three diferent functionalities:
 
 As we can see in picture, the software allows you to select the date range by a DatePicker, which is better than writting the date in the text field. 
 
-![Example Program 2](readmeDocs/example2.png "Example GUI Program 2")
+![Example Program 2](readmeDocs/example2-1.png "Example GUI Program 2")
 
 Also when the software copy the selected file into the selected directory, informs the user with an information dialog.  
 
