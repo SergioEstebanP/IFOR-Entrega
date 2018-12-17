@@ -57,6 +57,9 @@ public class Program2 extends Application {
     private Button selectDir1 = new Button("Dir");
     private Button copy = new Button("Copy!");
 
+    private DatePicker fromDatePicker = new DatePicker();
+    private DatePicker toDatePicker = new DatePicker();
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -104,8 +107,13 @@ public class Program2 extends Application {
         grid.setHalignment(title, HPos.CENTER);
         grid.add(fromDate, 0, 1);
         grid.add(toDate, 1, 1);
-        grid.add(fromTxt, 0, 2);
-        grid.add(toTxt, 1, 2);
+
+        //grid.add(fromTxt, 0, 2);
+        //grid.add(toTxt, 1, 2);
+
+        grid.add(fromDatePicker, 0, 2);
+        grid.add(toDatePicker, 1, 2);
+
         grid.add(fromPath, 0, 3);
         grid.add(fromPathTxt, 1, 3);
         grid.add(selectDir, 2, 3);
