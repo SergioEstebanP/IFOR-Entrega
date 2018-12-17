@@ -57,11 +57,20 @@ public class Handler1 {
             while ((commandOutput = reader.readLine())!= null) {
                 sb.append(commandOutput + "\n");
             }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("IFOR-ENSICS");
+
             if (sb.toString().equals("")) {
+                alert.setHeaderText("Process Complete");
+                alert.setContentText("Differences not found.\nFiles are EQUAL.");
                 output.setText("Files are NOT different");
             } else {
+                alert.setHeaderText("Process Complete");
+                alert.setContentText("Differences found.\nFiles are DIFERENT.");
                 output.setText("Files ARE different: \n\n" + sb.toString());
             }
+            alert.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -78,4 +78,12 @@ public class CommonHandler {
         alert.setContentText("Author: Sergio Esteban Pellejero\nVersion: 1.0");
         alert.show();
     }
+
+    public static void showNotImplemented() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("IFOR-ENSICS");
+        alert.setHeaderText("Not Implemented");
+        alert.setContentText("Software still under development.\nFunctionallity not implemented yet.\nSorry and have patience.");
+        alert.show();
+    }
 }

@@ -83,6 +83,8 @@ public class Program3 extends Application {
         selectDir1.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, copyPathTxt));
         copy.setOnAction(e -> CommonHandler.copyToGivenDir(copyPathTxt, table));
         about.setOnAction(e -> CommonHandler.showInformation());
+        settingsMenu.setOnAction(e -> CommonHandler.showNotImplemented());
+        magicNumbers.setOnAction(e -> CommonHandler.showNotImplemented());
     }
 
     private void mainGridConfiguration(GridPane grid) {

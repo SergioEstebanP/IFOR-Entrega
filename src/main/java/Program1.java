@@ -78,6 +78,7 @@ public class Program1 extends Application {
         searchDiferences.setOnAction(e -> Handler1.lookForDiferences(file1Path, file2Path, diferences));
 
         about.setOnAction(e -> CommonHandler.showInformation());
+        settingsMenu.setOnAction(e -> CommonHandler.showNotImplemented());
     }
 
     private void mainGridConfiguration(GridPane grid) {
