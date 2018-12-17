@@ -34,6 +34,10 @@ There is only one condition required to run this software. You must have install
 
 ![Java version](readmeDocs/javaVersion.png "Checking Java Version")
 
+As said before, make sure that you're enviromental variable is pointing to the right way. You can follo the next tutorial to set up or check the enviromental variable. Also, sometimes is needed to reboot the computer to update the value of the variable to the correct one. 
+
+
+
 In theory you don't need gradle, because the gradle wrapper makes all the work. In case the gradle wrapper fails in the execution, you must install gradle in your computer and, as told before, make sure the envormental variable for gradle is poiting to the last version. For this software you need [Gradle 4.10.2](https://gradle.org/next-steps/?version=4.10.2&format=all). 
 
 To run this software, you have to specify in the [build.gradle](build.gradle) file the Program to run. You must change there the variable mainClassName. The values accepted are:
