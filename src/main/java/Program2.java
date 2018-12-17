@@ -85,16 +85,16 @@ public class Program2 extends Application {
         stageConfiguration(stage);
 
         // Added main handler actions and events
-        lookFor.setOnAction(e -> Handler2.lookForCreation(table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        lookFor.setOnAction(e -> Handler2.lookForCreation(table, colName, colPath, fromDatePicker, toDatePicker, fromPathTxt));
         selectDir.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, fromPathTxt));
         selectDir1.setOnAction(e -> CommonHandler.selectDir(dirChooser, stage, copyPathTxt));
         copy.setOnAction(e -> CommonHandler.copyToGivenDir(copyPathTxt, table));
         about.setOnAction(e -> CommonHandler.showInformation());
 
         // Added functionality to change between scences
-        creation.setOnAction(e -> Handler2.changeToCreationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
-        modification.setOnAction(e -> Handler2.changeToModificationScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
-        access.setOnAction(e -> Handler2.changeToAccessScene(title, lookFor, table, colName, colPath, fromTxt, toTxt, fromPathTxt));
+        creation.setOnAction(e -> Handler2.changeToCreationScene(title, lookFor, table, colName, colPath, fromDatePicker, toDatePicker, fromPathTxt));
+        modification.setOnAction(e -> Handler2.changeToModificationScene(title, lookFor, table, colName, colPath, fromDatePicker, toDatePicker, fromPathTxt));
+        access.setOnAction(e -> Handler2.changeToAccessScene(title, lookFor, table, colName, colPath, fromDatePicker, toDatePicker, fromPathTxt));
     }
 
     private void mainGridConfiguration(GridPane grid) {
@@ -107,13 +107,8 @@ public class Program2 extends Application {
         grid.setHalignment(title, HPos.CENTER);
         grid.add(fromDate, 0, 1);
         grid.add(toDate, 1, 1);
-
-        //grid.add(fromTxt, 0, 2);
-        //grid.add(toTxt, 1, 2);
-
         grid.add(fromDatePicker, 0, 2);
         grid.add(toDatePicker, 1, 2);
-
         grid.add(fromPath, 0, 3);
         grid.add(fromPathTxt, 1, 3);
         grid.add(selectDir, 2, 3);

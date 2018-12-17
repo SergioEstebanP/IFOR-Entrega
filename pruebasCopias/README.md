@@ -30,9 +30,7 @@ Main tools used are:
 ### Running the software
 ---
 
-There is only one condition required to run this software. You must have installed [JDK 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html). Be sure that your enviromental variable for java is poiting to the JDK 11 distribution, if not, the software will not run. To check your java version you need to run the command ```java --version``` if your are in Linux, or ```java -version``` if your're a windows user. Then the iutput should be something like this:
-
-![Java version](readmeDocs/javaVersion.png "Checking Java Version")
+There is only one condition required to run this software. You must have installed [JDK 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html). Be sure that your enviromental variable for java is poiting to the JDK 11 distribution, if not, the software will not run. 
 
 In theory you don't need gradle, because the gradle wrapper makes all the work. In case the gradle wrapper fails in the execution, you must install gradle in your computer and, as told before, make sure the envormental variable for gradle is poiting to the last version. For this software you need [Gradle 4.10.2](https://gradle.org/next-steps/?version=4.10.2&format=all). 
 
