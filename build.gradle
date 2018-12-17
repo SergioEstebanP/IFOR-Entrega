@@ -7,8 +7,8 @@ plugins {
 // Uncomment the program to run it (ONly one at time)
 
 //mainClassName = 'Program1'
-//mainClassName = 'Program2'
-mainClassName = 'Program3'
+mainClassName = 'Program2'
+//mainClassName = 'Program3'
 
 dependencies {
     compile 'com.google.guava:guava:23.0'
